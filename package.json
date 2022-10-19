@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "mocha -r ts-node/register 'test/**/*.ts'",
+        "run001": "node build/src/001_simply_array_sum/index.js",
+        "test": "mocha -r ts-node/register 'test/**/*.spec.ts'",
         "build": "npm test && tsc"
     },
     "keywords": [],
