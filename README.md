@@ -15,6 +15,11 @@ En todas o en casi todas las soluciones presentaré varias soluciones unas más 
 
 Vamos al lío, te voy a explicar ahora todas las instalaciones y configuraciones necesarias para poder empezar a codificar 
 
+
+# links en la descripcion:
+
+gitignore generator: https://mrkandreev.name/snippets/gitignore-generator/#Node,w10,typescript
+github project: https://github.com/JUANLUNABLANCO/dev-hacker-crash
 ## ANTES DE NADA
 0. crearn un proyecto de nodejs 
     > npm init -y
@@ -41,19 +46,19 @@ Vamos al lío, te voy a explicar ahora todas las instalaciones y configuraciones
             "moduleResolution": "Node",
             "esModuleInterop": true,
         },
-  "include": ["src/**/*"],
-  "exclude": ["./node_modules/", "./tests/"]
+        "include": ["src/**/*"],
+        "exclude": ["./node_modules/", "./tests/"]
 
     3. modificar el package.json para hacer tests
         "test": "mocha --require ts-node/register 'test/**/*.ts'",
         "build": "npm test && tsc" // pasará los tests y si lo logra creará el build
 
-3. Ejecutar el transpilador de typescrit en modo watching
+    4. Ejecutar el transpilador de typescrit en modo watching
     > tsc -w    // creará el buils y observará cualquier cambio para reescribirlo
 
-4. desarrollar el ejercicio
-  4.1. enunciado en inglés, yo traduzco (pero poco a poco iremos introduciendo más inglés en nuestros desarrollos ya sabeis que en las empresas no importa sino sabes programar mientras que sepas inglés)
-  4.2. ejercicio resuelto en index.js
+    5. desarrollar el 1er ejercicio
+    5.1. enunciado en inglés, yo traduzco (pero poco a poco iremos introduciendo más inglés en nuestros desarrollos ya sabeis que en las empresas no importa sino sabes programar mientras que sepas inglés)
+    5.2. ejercicio resuelto en index.js
       
 
         export function simpleArraySum(ar: number[]): number {
@@ -71,51 +76,66 @@ Vamos al lío, te voy a explicar ahora todas las instalaciones y configuraciones
 
             <!-- return 0; -->
         }
-
-
       
 
-      ### y otra al estilo profesional
-      
-
-5. desarrollar el test
+    6. desarrollar el test
       const { assert, expect } = require('chai');
 
-import { simpleArraySum } from  '../../001 simply array sum/index';
+    import { simpleArraySum } from  '../../001 simply array sum/index';
 
-const arrOne = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10];
-const arrTwo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-// const arrThree = ['hola', 2 ,3 ,4];
+    const arrOne = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10];
+    const arrTwo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    // const arrThree = ['hola', 2 ,3 ,4];
 
-// console.log("[1,2,3,4,5,6,7,8,9,0,10] --> must be 55: ", simpleArraySum(arrOne));
-// console.log("[1,2,3,4,5,6,7,8,9,0,9,8,7,6,5,4,3,2,1] --> must be 90: ", simpleArraySum(arrTwo));
+    // console.log("[1,2,3,4,5,6,7,8,9,0,10] --> must be 55: ", simpleArraySum(arrOne));
+    // console.log("[1,2,3,4,5,6,7,8,9,0,9,8,7,6,5,4,3,2,1] --> must be 90: ", simpleArraySum(arrTwo));
 
-describe('Array', function() {
-    describe('#001 simply Array Sum: duma de numeros desde un array', function() {
-        it('"[1,2,3,4,5,6,7,8,9,0,10] --> must be 55: "', function() {
-            assert.equal(simpleArraySum(arrOne), 55);
+    describe('Array', function() {
+        describe('#001 simply Array Sum: duma de numeros desde un array', function() {
+            it('"[1,2,3,4,5,6,7,8,9,0,10] --> must be 55: "', function() {
+                assert.equal(simpleArraySum(arrOne), 55);
+            });
+            it('"[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8, 7, 6, 5, 4, 3, 2, 1] --> must be 100: "', function() {
+                assert.equal(simpleArraySum(arrTwo), 90);
+            });
+            // it('"["hola", 2 ,3 ,4] --> must fail: "', function() {
+            //     assert.equal(simpleArraySum(arrThree), null);
+            // });
         });
-        it('"[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8, 7, 6, 5, 4, 3, 2, 1] --> must be 100: "', function() {
-            assert.equal(simpleArraySum(arrTwo), 90);
-        });
-        // it('"["hola", 2 ,3 ,4] --> must fail: "', function() {
-        //     assert.equal(simpleArraySum(arrThree), null);
-        // });
     });
-});
 
-6. Ejecutar el test
+    7. Ejecutar el test
     > npm test
 
 
+# EJERCICIO 002 Rates Compare
+1. enunciado:
+Gema Fernández de Tenerife, creó un problema para Dev Hacker Crash.
+Un revisor califica dos desafíos, otorgando puntos en una escala del 1 al 100 para tres categorías: claridad del problema, originalidad y dificultad.
 
-# links en la descripcion:
+La calificación del desafío de Alicia es el triplete a = (a[0], a[1], a[2]), y la calificación del desafío de Bob es el triplete b = (b[0], b[1], b [2]).
 
-gitignore generator: https://mrkandreev.name/snippets/gitignore-generator/#Node,w10,typescript
-github project: https://github.com/JUANLUNABLANCO/dev-hacker-crash
+La tarea es encontrar sus puntos de comparación comparando a[0] con b[0], a[1] con b[1] y a[2] con b[2].
 
+Si a[i] > b[i], entonces Alice recibe 1 punto.
+Si a[i] < b[i], Bob recibe 1 punto.
+Si a[i] = b[i], entonces ninguna persona recibe un punto.
+Los puntos de comparación son los puntos totales que ganó una persona.
 
+Dados a y b, determine sus respectivos puntos de comparación.
 
-######
+Ejemplo
+
+un = [1, 2, 3]
+segundo = [3, 2, 1]
+Para los elementos *0*, Bob recibe un punto porque a[0] .
+Para los elementos iguales a[1] y b[1], no se obtienen puntos.
+Finalmente, para los elementos 2, a[2] > b[2], por lo que Alice recibe un punto.
+La matriz de retorno es [1, 1] con la puntuación de Alice primero y la de Bob en segundo lugar.
+El ganador es: ¡Empate!
+
+Al final, el algoritmo debe devolver los puntos de cada uno en una matriz y quién es el ganador.
+
+Controlaremos si la longitud del array 1 o del array 2 es diferente de 3, devolviendo false
 
 

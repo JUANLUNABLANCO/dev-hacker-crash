@@ -15,3 +15,4 @@ describe('001 simply Array sum', function () {
     assert.equal(simpleArraySum(arrTwo), 90);
   });
 });
+
