@@ -138,4 +138,78 @@ Al final, el algoritmo debe devolver los puntos de cada uno en una matriz y qui�
 
 Controlaremos si la longitud del array 1 o del array 2 es diferente de 3, devolviendo false
 
+## index.ts
+'use strict'
 
+/*
+ * Complete the 'compareTriplets' function below.
+ *
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts following parameters:
+ *  1. INTEGER_ARRAY a
+ *  2. INTEGER_ARRAY b
+ */
+function compareTriplets( ar1: number[], ar2: number[]): number[]{
+  // dummy solution
+  let arrResult: number[]= [0,0];
+  for (let i= 0; i<3; i++){
+    if (ar1[i] > ar2[i]) { 
+      arrResult[0] += 1; 
+  }
+  if (ar2[i] > ar1[i]) {
+      arrResult[1] += 1;
+  }
+  }
+  return arrResult;
+
+  // expert solution
+  let arrResult = [0,0];
+  
+}
+
+export function supervisorRates(ar1: number[], ar2: number[]): number[] | false {
+  if (ar1.length !== 3 || ar2.length !==3) return false;
+  let resultArray: number[] = compareTriplets(ar1, ar2);
+  if (resultArray[0] > resultArray[1]) {
+    console.log('Alice WINNER!');
+  } else if (resultArray[0] < resultArray[1]) {
+    console.log('Bob WINNER!');
+  } else {
+    console.log('TIE!');
+  }
+  return resultArray;
+}
+
+## index.spec.ts
+const { assert, expect } = require('chai');
+
+import { supervisorRates } from "../../src/002_rates_compare/index";
+
+// empate [0,0]
+const arrAliceOne = [1, 2, 3];
+const arrBobOne = [1, 2, 3]; 
+// alice gana [3,0]
+const arrAliceTwo = [10, 20, 30];
+const arrBobTwo = [1, 2, 3]; 
+// Bob gana [1,2]
+const arrAliceThree = [10, 20, 30];
+const arrBobThree = [20, 40, 3]; 
+// false
+const arrAliceFour = [1,2,3,4];
+const arrBobFour = [11,22,33,44,55];
+
+
+describe('002 Supervisor compare triplets', function () {
+  it ('Alice rates =[1,2,3], Bob Rates = [1,2,3]: ¡TIE!', function () {
+    assert.deepEqual(supervisorRates(arrAliceOne, arrBobOne), [0,0]);
+  });
+  it ('Alice rates =[10,20,30], Bob Rates = [1,2,3]: Alice WINNER!', function () {
+    assert.deepEqual(supervisorRates(arrAliceTwo, arrBobTwo), [3,0]);
+  });
+  it ('Alice rates =[1,2,3], Bob Rates = [1,2,3]: Bob WINNER!', function () {
+    assert.deepEqual(supervisorRates(arrAliceThree, arrBobThree), [1,2]);
+  });
+  it ('Alice rates =[1,2,3], Bob Rates = [1,2,3]: ¡TIE!', function () {
+    assert.equal(supervisorRates(arrAliceFour, arrBobFour), false);
+  });
+});
