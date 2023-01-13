@@ -1,0 +1,23 @@
+1. Statement
+Given a list of integers we want to get another list with the square or cube or whatever, passed as a parameter.
+That is, if we want the square we will receive a 2, the cube a 3,...
+the two lists will have the same length, the first received list will be integers, we don't need to worry about that.
+
+2. Example
+
+const arrayList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+should return a new array like this:
+
+const newArrayList = [2, 4, 9, 16, 25, 36, 49, 64, 81, 100];
+
+3. testing we´ll make
+// squared: ([1, 2, 3])**2 => [1*1=1, 2*2=4, 3*3=9]
+const arrOne = [1, 2, 3];
+const powOne = 2;
+const solutionOne = [1, 4, 9];
+
+// cubed: ([4, 5, 6, 13])**3 = [4*4*4=64, 5*5*5=125, 6*6*6= 216, 9*9*9 = 2197]
+const arrTwo = [4, 5, 6, 13];
+const powTwo = 3;
+const solutionTwo = [64, 125, 216, 2197];

@@ -56,11 +56,12 @@ github project: https://github.com/JUANLUNABLANCO/dev-hacker-crash
     4. Ejecutar el transpilador de typescrit en modo watching
     > tsc -w    // creará el buils y observará cualquier cambio para reescribirlo
 
+# EJERCICIO 001 Simple array sum
     5. desarrollar el 1er ejercicio
     5.1. enunciado en inglés, yo traduzco (pero poco a poco iremos introduciendo más inglés en nuestros desarrollos ya sabeis que en las empresas no importa sino sabes programar mientras que sepas inglés)
     5.2. ejercicio resuelto en index.js
       
-
+```
         export function simpleArraySum(ar: number[]): number {
             // # level dummy
             let sum=0;
@@ -76,9 +77,10 @@ github project: https://github.com/JUANLUNABLANCO/dev-hacker-crash
 
             <!-- return 0; -->
         }
-      
+```
 
     6. desarrollar el test
+```
       const { assert, expect } = require('chai');
 
     import { simpleArraySum } from  '../../001 simply array sum/index';
@@ -103,7 +105,7 @@ github project: https://github.com/JUANLUNABLANCO/dev-hacker-crash
             // });
         });
     });
-
+```
     7. Ejecutar el test
     > npm test
 
@@ -139,6 +141,7 @@ Al final, el algoritmo debe devolver los puntos de cada uno en una matriz y qui�
 Controlaremos si la longitud del array 1 o del array 2 es diferente de 3, devolviendo false
 
 ## index.ts
+```
 'use strict'
 
 /*
@@ -164,7 +167,7 @@ function compareTriplets( ar1: number[], ar2: number[]): number[]{
 
   // expert solution
   let arrResult = [0,0];
-  
+
 }
 
 export function supervisorRates(ar1: number[], ar2: number[]): number[] | false {
@@ -179,8 +182,10 @@ export function supervisorRates(ar1: number[], ar2: number[]): number[] | false 
   }
   return resultArray;
 }
+```
 
 ## index.spec.ts
+ ```
 const { assert, expect } = require('chai');
 
 import { supervisorRates } from "../../src/002_rates_compare/index";
@@ -213,3 +218,195 @@ describe('002 Supervisor compare triplets', function () {
     assert.equal(supervisorRates(arrAliceFour, arrBobFour), false);
   });
 });
+```
+
+# EJERCICIO 003 uso de map()
+## 1. Enunciado
+Dada una lista de números enteros queremos obtener otra lista con el cuadrado o cubo o lo que sea, pasado por parámetro. 
+Es decir, si queremos el cuadrado recibiremos un 2, el cubo un 3, ...
+las dos listas tendrán la misma longitud, la primera lista recibida será de números enteros, no debemos preocuparnos por eso.
+
+## 2. Ejemplo
+
+const arrayList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+deberá devolver un nuevo array como este: si por ejemplo recibimos un 2
+
+const newArrayList = [2, 4, 9, 16, 25, 36, 49, 64, 81, 100];
+
+
+## Para los tests
+// [1*1=1, 2*2=4, 3*3=9]
+const arrOne = [1, 2, 3];
+const powOne = 2;
+const solutionOne = [1, 4, 9];
+
+// [4*4*4=64, 5*5*5=125, 6*6*6= 216, 9*9*9 = 2197]
+const arrTwo = [4, 5, 6, 13];
+const powTwo = 3;
+const solutionTwo = [64, 125, 216, 2197];
+
+
+## 3. soluciones
+--- index.ts ---
+```
+'use strict'
+
+export function potencyList(numberList: number[], potency: number): number[]  {
+  let resultArray = [];
+  for (let i=0; i < numberList.length; i++) {
+    resultArray.push(Math.pow(numberList[i], potency));
+  }
+  return resultArray;
+
+  // usando map()
+  // let resultArray = [];
+  // return resultArray = numberList.map((current) =>{
+  //   return Math.pow(current, potency);
+  // });
+}
+``` 
+--- index.spec.ts ---
+```
+const {assert, expect} = require('chai');
+
+import { potencyList } from '../../src/003_potency_list'
+
+// [1*1=1, 2*2=4, 3*3=9]
+const arrOne = [1, 2, 3];
+const powOne = 2;
+const solutionOne = [1, 4, 9];
+
+// [4*4*4=64, 5*5*5=125, 6*6*6= 216, 9*9*9 = 2197]
+const arrTwo = [4, 5, 6, 13];
+const powTwo = 3;
+const solutionTwo = [64, 125, 216, 2197]; 
+
+describe('003 Potency lists', () => {
+  it('given an array list [1,2,3] and the pow value is 2, the result must be: [1,4,9]', ()=>{
+    assert.deepEqual(potencyList(arrOne, powOne), solutionOne);
+  });
+  it('given an array list [4,5,6,13] and the pow value is 3, the result must be: [64, 125, 216, 2197]', ()=>{
+    assert.deepEqual(potencyList(arrTwo, powTwo), solutionTwo);
+  });
+});
+``` 
+
+
+
+# EXERCICE 0004 MORE THAN EIGHT LETTERS
+1. Declaración
+Dada una lista de cadenas, queremos obtener solo las palabras que verifican más de ocho palabras de longitud.
+Si la solución es una matriz vacía, devuelve nulo.
+
+2. Ejemplo
+
+const arrayString = ["pepe", "perez", "peluquero", "peinaba", "pelucas", "por", "pocas", "pesetas", "y", "ponía", "puas", "en", "las", "peinetas"];
+
+should return a new array like this:
+
+const newArrayString = ["peluquero"];
+
+
+3. Los tests que debemos pasar
+// caso uno 
+const arrayStringOne = ["pepe", "perez", "peluquero", "peinaba", "pelucas", "por", "pocas", "pesetas", "y", "ponía", "puas", "en", "las", "peinetas"];
+const solutionOne = ["peluquero"];
+
+// caso dos
+const arrayStringTwo = ["Python", "PHP", "Javascript", "C#", "Flutter", "Typescript"];
+const solutionTwo = ["Javascript", "Typescript"]
+
+// caso tres 
+const arrayStringThree = ["hello", "World"];
+const solutionThree = null;
+
+## SOLUTION 004 #####################################
+--- INDEX.TS ---
+```
+'use strict'
+
+export function moreThanEightWords (stringList: string[]): string[] | null{
+  // ###### solution for dummies
+  let resultArray = [];
+  for (let i = 0; i < stringList.length; i++) {
+    if (stringList[i].length > 8) resultArray.push(stringList[i]);
+  }
+  console.log(resultArray);
+  if (resultArray.length == 0 ) return null;
+  return resultArray;
+
+  // ##### expert solution
+  let resultArray = [];
+  resultArray = stringList.filter((word)=>{
+    return word.length > 8;
+  });
+  return resultArray.length >0 ? resultArray : null
+}
+``` 
+
+--- INDEX.SPEC.TS ---
+```
+const {assert, expect} = require('chai');
+
+import { moreThanEightWords } from '../../src/004_more_than_8_words/index'
+
+// case 1 
+const arrayStringOne = ["pepe", "perez", "peluquero", "peinaba", "pelucas", "por", "pocas", "pesetas", "y", "ponía", "puas", "en", "las", "peinetas"];
+const solutionOne = ["peluquero"];
+
+// case 2
+const arrayStringTwo = ["Python", "PHP", "Javascript", "C#", "Flutter", "Typescript"];
+const solutionTwo = ["Javascript", "Typescript"]
+
+// case 3 
+const arrayStringThree = ["hello", "World"];
+const solutionThree = null;
+
+describe('004 More than eigth words', () => {
+  it('given an string list ["pepe", "perez", "peluquero", "peinaba", "pelucas", "por", "pocas", "pesetas", "y", "ponía", "puas", "en", "las", "peinetas"], the result must be: ["peluquero"]', ()=>{
+    assert.deepEqual(moreThanEightWords(arrayStringOne), solutionOne);
+  });
+  it('given an string list ["Python", "PHP", "Javascript", "C#", "Flutter", "Typescript"], the result must be: ["Javascript", "Typescript"]', ()=>{
+    assert.deepEqual(moreThanEightWords(arrayStringTwo), solutionTwo);
+  });
+  it('given an string list ["Hello", "World"], the result must be: null', ()=>{
+    assert.deepEqual(moreThanEightWords(arrayStringThree), solutionThree);
+  });
+});
+```
+
+# EXERCICE 005 Search a word in phrase #############
+
+Aprende a buscar palabras o valores dentro de una cadena usando el método indexOf en JavaScript. 
+Esta es una tarea fundamental en programación, por que es útil para realizar validaciones o correcciones en nuestros programas. 
+
+Sintaxis
+string.indexOf(valor, posicionInicial)
+
+El método indexOf() en una cadena o string nos devuelve la posición de la primera ocurrencia de un término de búsqueda, funciona de la siguiente manera:
+
+valor es la palabra que deseamos encontrar.
+posicionInicial es opcional e indica la posición inicial de la búsqueda. Recuerda que en JavaScript la posición inicial en starings o arrays es 0, y si no pasas este dato, la búsqueda comienza en el inicio de la cadena.
+
+Esta rutina nos devuelve un valor numérico con la posición en la que encontró el valor indicado. Si lo encuentra devuelve la posición comenzando con 0, pero si no lo encuentra devuelve -1.
+
+Forma correcta para validar indexOf en JavaScript
+Este método nos devuelve -1 cuando el valor no se encontró en la cadena, pero recuerda que en JavaScript -1 no es igual a “-1”, así que la forma correcta de validarlo es usando el operador !==.
+
+
+
+A continuación te muestro un ejemplo.
+
+```
+// esta es la cadena donde buscaremos
+let cadena = "Este era un gato con los pies de trapo";
+// esta es la palabra a buscar
+let termino = "gato";
+// para buscar la palabra hacemos
+let posicion = cadena.indexOf(termino);
+if (posicion !== -1)
+    console.log("La palabra está en la posición " + posicion);
+else
+    console.log("No encontré lo que estás buscando");
+```

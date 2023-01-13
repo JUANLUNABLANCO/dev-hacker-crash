@@ -1,0 +1,26 @@
+1. Statement
+Given a list of strings we want to get only that words that check more than eigth words length.
+If the solution is an empty array return null.
+
+2. Example
+
+const arrayString = ["pepe", "perez", "peluquero", "peinaba", "pelucas", "por", "pocas", "pesetas", "y", "ponía", "puas", "en", "las", "peinetas"];
+
+should return a new array like this:
+
+const newArrayString = ["peluquero"];
+
+
+3. testing we´ll make
+// caso uno 
+const arrayStringOne = ["pepe", "perez", "peluquero", "peinaba", "pelucas", "por", "pocas", "pesetas", "y", "ponía", "puas", "en", "las", "peinetas"];
+const solutionOne = ["peluquero"];
+
+// caso dos
+const arrayStringTwo = ["Python", "PHP", "Javascript", "C#", "Flutter", "Typescript"];
+const solutionTwo = ["Javascript", "Typescript"]
+
+// caso tres 
+const arrayStringThree = ["hello", "World"];
+const solutionThree = null;
+

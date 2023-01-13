@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "run001": "node build/src/001_simply_array_sum/index.js",
+        "exercise-builded-xxx": "node build/src/xxx_nombre_ejercicio/index.js",
+        "exercise-xxx": "npx ts-node ./src/xxx_nombre_ejercicio/index.ts",
         "test": "mocha -r ts-node/register 'test/**/*.spec.ts'",
         "build": "npm test && tsc"
     },
