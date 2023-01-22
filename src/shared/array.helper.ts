@@ -50,27 +50,3 @@ export class ArrayHelper {
     return uniques;
   }
 }
-  // limpieza array de primitivos
-  // const numeros = [1, 2, 2, 3, 4, 4, 5];
-  // const uniqueNumeros = ArrayHelper.cleanArray(numeros);
-  // console.log(uniqueNumeros);
-  // expected: [ 1, 2, 3, 4, 5 ];
-
-  // limpieza de array de objetos
-  // const wordsInPhrase = [
-  //   { era: 1 },  { una: 1 },
-  //   { vez: 1 },  { un: 3 },
-  //   { gato: 1 }, { y: 1 },
-  //   { un: 3 },   { zapato: 1 },
-  //   { que: 1 },  { deseaban: 1 },
-  //   { ser: 1 },  { amigos: 1 },
-  //   { de: 1 },   { un: 3 },
-  //   { pato: 1 }
-  // ]
-  // const uniquesWordsInPhrase = ArrayHelper.cleanArrayOfObjectsOnlyOneParam(wordsInPhrase);
-  // console.log(uniquesWordsInPhrase);
-// [
-  // { era: 1 },  { una: 1 }, { vez: 1 },  { un: 3 }, { gato: 1 }, { y: 1 },
-  // { zapato: 1 }, { que: 1 },  { deseaban: 1 }, { ser: 1 },  { amigos: 1 },
-  // { de: 1 },   { pato: 1 }
-// ]

@@ -410,3 +410,318 @@ if (posicion !== -1)
 else
     console.log("No encontré lo que estás buscando");
 ```
+
+
+
+
+
+
+## 006 is palindrome
+
+"que pasa chicos, y bienvenidos a este tutorial de algoritmia. Hoy vamos a hablar sobre cómo utilizar la clase StringHelper y la función isPalindrome para verificar si una frase es un palíndromo.
+
+Un palíndromo es una frase que se lee igual al derecho que al revés. Por ejemplo, la frase 'dabale arroz a la zorra el abad' es un palíndromo porque se lee igual al derecho que al revés.
+
+Empecemos por la clase StringHelper. Esta clase proporciona varios métodos estáticos que ayudan a limpiar y procesar una frase.
+
+
+El primer método es cleanPhrase, este método toma una frase como argumento y realiza varias operaciones para limpiarla. En primer lugar, elimina cualquier carácter no deseado como signos de puntuación, números y símbolos. Además, convierte todas las letras a minúsculas y elimina los espacios en blanco sobrantes. También convierte cualquier acento en su letra equivalente sin acento.
+
+La vamos a modificar para que acepte también la ü y para que los espacios en blnco que sean más de uno, los convierta en uno solo.
+
+El segundo método es separatedWords, este método toma una frase limpia y la convierte en un arreglo de letras individuales.
+
+El tercer método es wordsToLargeWord, este método une las letras en una sola palabra sin espacios.
+
+El cuarto método es wordsToLargeWordReverse, este método une las letras en una sola palabra pero en orden inverso.
+
+Por último el método noBascpace(), limpia una frase de espacios en blanco.
+
+
+// TODO expliquemos los ejemplos anteriores brevemente
+
+
+Vayamos a los tests por esta vez primero, para crear un hábito denominado TDD, test driven development o desarrollo guiado por testing.
+
+Vemos como fallan porque no tenemos implementado el código
+
+Vamos a implementar cada cosa, paso a paso e ir pasando los tests luego refactorizaremos todo.
+
+Ahora, pasemos a la función isPalindrome. Esta función toma una frase como argumento y utiliza los métodos de la clase StringHelper para limpiar y procesar la frase. Luego, compara si la frase unida es igual a la frase unida pero del revés. Si es igual, la función devuelve true, lo que indica que la frase es un palíndromo. Si no es igual, la función devuelve false, lo que indica que la frase no es un palíndromo.
+
+Veamos un ejemplo de como usarlo:
+
+```
+// const {StringHelper} = require('../shared/string.helper');
+import {StringHelper} from '../shared/string.helper'; // gracias a tsconfig.json 
+// { ... esModuleInterop: true, moduleResolution: "Node"
+
+export function isPalindrome(phrase: string): boolean{
+    // limpiamos la frase usando helper
+    const phraseClean = StringHelper.cleanPhrase(phrase);
+    // creamos un array por letras usando helper
+    const phraseSeparated = StringHelper.separatedWords(phraseClean);
+    // compara si la frase unida es igual a la frase unida pero del revés
+    return StringHelper.wordsToLargeWord(phraseSeparated) === StringHelper.wordsToLargeWordReverse(phraseSeparated);
+}
+
+var poeme = "Amor azul' Ramera, de todo te di. Mariposa colosal, sí, yo de todo te di. Poda la rosa, Venus. El átomo como tal es un evasor alado. Pide, todo te doy: isla, sol, ocaso, pirámide. Todo te daré: mar, luz, aroma";
+
+
+
+const applyFunction = isPalindrome(poeme);
+
+const result = applyFunction == true ? "Es un palíndromo" : "no es un palíndromo"; 
+
+console.log(result);
+
+```
+
+En este ejemplo, estamos importando las clases StringHelper y utilizando la función isPalindrome para verificar si el poema es un palíndromo.
+
+Primero limpiamos la frase usando la función cleanPhrase() que limpia todo
+Después creamos un array de letras a partir de la frase limpia usando separatedWords()
+Después comparamos si la frase unida es igual a la frase unida pero del revés
+Y devolvemos true o false
+
+En el caso del 'poeme' el resultado sería true, lo que indica que el poema si es un palíndromo.
+
+
+
+Espero que este tutorial les haya sido útil. Si tienen alguna pregunta o sugerencia, por favor dejen un comentario abajo. ¡Gracias por ver y apollar este canal!
+
+
+
+
+# EXERCICE 007 ARRAY HELPERS TESTING ##############
+
+¡Bienvenidos a este tutorial de algoritimia, estás en Dev HackerCrash y yo soy Juan Luna! En este video, vamos a discutir cómo utilizar el código proporcionado para limpiar un array de primitivos y un array de objetos de un solo parámetro.
+
+En primer lugar, hablemos de la función 'cleanArray'. Como pueden ver, esta función toma un array como parámetro y devuelve un array limpio sin elementos duplicados.
+
+Para lograr esto, utilizamos el método 'filter' de JavaScript para iterar sobre el array original y comparar cada elemento con el índice de ese elemento en el array original. Si el índice es igual, significa que ese elemento es único y lo agregamos al array de elementos únicos.
+
+Ahora, vamos a hablar de la función 'cleanArrayOfObjectsOnlyOneParam'. Esta función es muy similar a la anterior, pero en lugar de trabajar con arrays de primitivos, trabaja con arrays de objetos que tienen solo un parámetro.
+
+[enseñar y explicar los ejemplos]
+Para limpiar este tipo de array, utilizamos una estructura de control for para iterar sobre el array original. Luego, utilizamos el método 'Object.keys' para obtener el primer parámetro de cada objeto y compararlo con los parámetros de los objetos únicos. Si el parámetro no se encuentra en el array de objetos únicos, lo agregamos al array.
+
+En resumen, este código proporciona dos funciones útiles para limpiar arrays de primitivos y arrays de objetos de un solo parámetro.
+
+
+Ahora vamos a ver cómo utilizar el código de prueba para comprobar que las funciones 'cleanArray' y 'cleanArrayOfObjectsOnlyOneParam' funcionan correctamente.
+
+[enseñar y explicar los ejemplos]
+Como pueden ver, el código de prueba utiliza la librería 'chai' para realizar pruebas unitarias en las funciones 'cleanArray' y 'cleanArrayOfObjectsOnlyOneParam'. Estas pruebas incluyen arrays de números, palabras, iconos UTF-8 y objetos con un solo parámetro.
+
+En cada prueba, se crea un array con elementos repetidos y se utiliza la función correspondiente para limpiarlo. Luego, se utiliza el método 'assert.deepEqual' de chai para comparar el array limpio con el resultado esperado. Si el resultado es igual, la prueba se considera exitosa.
+
+En general, el código de prueba proporcionado es una excelente manera de asegurar que nuestras funciones 'cleanArray' y 'cleanArrayOfObjectsOnlyOneParam' están funcionando correctamente, además
+
+El desarrollo guiado por pruebas (TDD) es un enfoque de desarrollo de software que se enfoca en escribir pruebas antes de escribir el código.
+
+La idea es que al escribir pruebas primero, se pueden asegurar de que el código cumpla con los requisitos del sistema y que esté libre de errores. Esto permite detectar problemas temprano en el proceso de desarrollo y asegurar una mayor calidad del software final. Además, al tener pruebas automatizadas, se puede tener una mayor confianza en el código y se pueden realizar cambios sin tener miedo a causar errores.
+
+Por otro lado, Las pruebas no solo se utilizan en el momento del desarrollo inicial, sino que pueden utilizarse como barrera de acceso a ramas, para la automatización y Continuous Deploiment, incluso en etapas tempranas, fijaros en el package.json, el script siguiente:
+
+```
+"build": "npm test && tsc"
+```
+
+En resumen, el TDD es una herramienta valiosa para desarrolladores ya que ayuda a asegurar una mayor calidad del software, detectar problemas temprano y tener una mayor confianza en el código.
+
+Así que en la medida de lo posible haremos TDD en nuestros códigos.
+
+
+Espero que te hay sido útil este contenido y si es así no olvides car a la campanita, un like un comentario, comparte mis vídeos etc. ya tu sabe mi amol, chao, gracias por ver!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# EXERCICE 00x Ordenación de arrays ###############
+
+...
+Espero que te hay sido útil este contenido y si es así no olvides car a la campanita, un like un comentario, comparte mis vídeos etc. ya tu sabe mi amol, chao, gracias por ver!
+## EXERCICE 00x Ordenación de arrays ##############
+
+Cómo ordenar arreglos en JavaScript
+
+JavaScript ofrece una serie de métodos y funciones que nos permiten manipular y ordenar arreglos de manera sencilla. Uno de ellos es el método sort(), que permite ordenar los elementos de un arreglo de forma ascendente o descendente. Sin embargo, al trabajar con tipos de datos diferentes como cadenas y números, puede dar resultados inesperados.
+
+Ordenar arreglos de cadenas
+
+Para ordenar un arreglo de cadenas, podemos utilizar el método sort() de la siguiente manera:
+
+```
+const equipos = ['Real Madrid', 'Manchester Utd', 'Bayern Munich', 'Juventus'];
+equipos.sort(); 
+console.log(equipos); // ['Bayern Munich', 'Juventus', 'Manchester Utd', 'Real Madrid']
+```
+
+De esta manera, los elementos se ordenarán en orden ascendente (de la A a la Z) por defecto. Si deseamos ordenar el arreglo en orden descendente, podemos utilizar el método reverse() en su lugar:
+
+```
+const equipos = ['Real Madrid', 'Manchester Utd', 'Bayern Munich', 'Juventus'];
+equipos.reverse();
+console.log(equipos); // ['Real Madrid', 'Manchester Utd', 'Juventus', 'Bayern Munich']
+Ordenar arreglos de números
+```
+
+El método sort() no funciona de la misma manera con arreglos de números, ya que JavaScript los ordena alfabéticamente. Por ejemplo, si tenemos un arreglo de números como [3, 23, 12], el método sort() los ordenaría como [12, 23, 3], lo cual es incorrecto.
+
+Para solucionar este problema, podemos utilizar una función de comparación que determine cómo deben ser ordenados los números. Esta función debe devolver el resultado de restar un número del otro. A continuación, un ejemplo de cómo ordenar un arreglo de números en orden ascendente:
+
+```
+const numeros = [3, 23, 12];
+numeros.sort(function(a, b){
+    return a - b;
+});
+console.log(numeros); // [3, 12, 23]
+```
+
+Si deseamos ordenar el arreglo en orden descendente, debemos restar el segundo parámetro (b) del primero (a):
+
+```
+const numeros = [3, 23, 12];
+numeros.sort(function(a, b){
+    return b - a;
+});
+console.log(numeros); // [23, 12, 3]
+```
+
+Ordenar objetos por un criterio específico
+
+Para ordenar objetos por un criterio específico, debemos proporcionar una función de comparación al método sort() que determine cómo deben ser ordenados los objetos. A continuación, te muestro un ejemplo de cómo ordenar un arreglo de objetos por un criterio específico (en este caso, el atributo "edad"):
+
+```
+const personas = [
+    {nombre: "Juan", edad: 25},
+    {nombre: "Maria", edad: 32},
+    {nombre: "Pedro", edad: 18},
+    {nombre: "Andrea", edad: 42}
+];
+
+// Ordenar en orden ascendente por edad
+personas.sort(function(a, b){
+    return a.edad - b.edad;
+});
+console.log(personas); 
+// [{nombre: "Pedro", edad: 18}, {nombre: "Juan", edad: 25}, {nombre: "Maria", edad: 32}, {nombre: "Andrea", edad: 42}]
+
+// Ordenar en orden descendente por edad
+personas.sort(function(a, b){
+    return b.edad - a.edad;
+});
+console.log(personas);
+// [{nombre: "Andrea", edad: 42}, {nombre: "Maria", edad: 32}, {nombre: "Juan", edad: 25}, {nombre: "Pedro", edad: 18}]
+```
+
+En este ejemplo, la función de comparación recibe dos objetos (a, b) y devuelve la diferencia entre sus edades, lo que permite al método sort() ordenarlos correctamente. Si se desea ordenar en orden descendente, se debe restar el valor de edad del objeto b del objeto a.
+
+Ten en cuenta que esta es solo una forma de ordenar objetos por un criterio específico, puedes crear tu propia función de comparación y usarla en sort() dependiendo de tus necesidades.
+
+Ahora algo más complejo:
+
+imagina un objeto como el siguiente {equipo: "Real Madrid", liga_de_campeones: 14,  ligas_españolas: 35, copas_del_rey: 19, supercopas_de_españa: 12, supercopas_de_europa: 5} 
+
+y un array de objetos similares a este unos diez equipos, los mejores de España, toma los datos de la wikipedia y que el criterio de ordenación fuera el siguiente: 
+
+const sort_criteria = {liga_de_campeones: 5,  ligas_españolas: 3, copas_del_rey: 2, supercopas_de_españa: 1, supercopas_de_europa: 2}; 
+
+en base a este criterio, el número de cada uno de los parámetros del objeto sort_criteria es un multiplicador para hayar, una puntuación del equipo correspondiente, es decir, que si aplicamos este criterio al Real Madrid, el resultado sería el siguiente:
+
+el resultado para el Real Madrid sería (14 * 5 + 35 * 3 + 19 * 2 + 12 * 1 + 5 * 2) = 235 puntos. Si aplicamos en una función este criterio de ordenación de mayor a menor en todos los equipos del array cómo quedaría la función ordenadora
+
+Para resolver esto  podemos crear una función que calcule la puntuación de cada equipo utilizando los multiplicadores especificados en el objeto sort_criteria. Luego, utilizamos esa función de comparación en el método sort() para ordenar el arreglo de equipos. A continuación te muestro un ejemplo de cómo podría quedar esta función:
+
+```
+const equipos = [
+    {equipo: "Real Madrid", liga_de_campeones: 14,  ligas_españolas: 35, copas_del_rey: 19, supercopas_de_españa: 12, supercopas_de_europa: 5},
+    {equipo: "Barcelona", liga_de_campeones: 5,  ligas_españolas: 26, copas_del_rey: 30, supercopas_de_españa: 13, supercopas_de_europa: 5},
+    {equipo: "Atletico Madrid", liga_de_campeones: 1,  ligas_españolas: 11, copas_del_rey: 11, supercopas_de_españa: 3, supercopas_de_europa: 3},
+    // ... más equipos
+];
+const sort_criteria = {liga_de_campeones: 5,  ligas_españñolas: 3, copas_del_rey: 2, supercopas_de_españa: 1, supercopas_de_europa: 2};
+function calculatePoints(equipo, criteria) {
+	let points = 0;
+	for (let key in criteria) {
+		if (equipo.hasOwnProperty(key)) {
+			points += equipo[key] * criteria[key];
+		}
+	}
+	return points;
+}
+
+equipos.sort(function(a, b) {
+	let aPoints = calculatePoints(a, sort_criteria);
+	let bPoints = calculatePoints(b, sort_criteria);
+	return bPoints - aPoints;
+});
+
+console.log(equipos);
+```
+
+La función "calculatePoints" recibe un objeto de equipo y el objeto sort_criteria, recorre cada una de las propiedades del equipo y las multiplica con el valor correspondiente en el objeto sort_criteria, finalmente devuelve la suma de todos los puntos.
+La función de comparación utiliza esta función para calcular los puntos de cada equipo y los compara para determinar el orden en el que deben aparecer en el arreglo, retornando la diferencia entre los puntos del equipo b y a, para que se ordene de manera descendente.
+
+Con esta función, el arreglo de equipos se ordenará de acuerdo al criterio especificado en el objeto sort_criteria, con el equipo con mayor puntuación en primer lugar y el equipo con menor puntuación en último lugar.  
+
+En resumen, el método sort() en JavaScript es una herramienta poderosa para ordenar arreglos de datos, pero es importante tener en cuenta los tipos de datos que se están trabajando y utilizar funciones de comparación adecuadas para obtener resultados correctos. Con esta información, podrás ordenar tus arreglos de manera eficiente y precisa.
+
+
+
+
+
+
+
+# EXERCICE 999 Automatic cash machine ##############
+Representaremos las transacciones de un cajero automático.
+Inicialmente debe recibir una cantidad x, de billetes, de 100, 50, 20, 10 y 5€, algo como [ { valor: 100, cantidad: 1000 }, { valor: 50, cantidad: 2000 }, ...].
+Inicializar el cajero es averiguar cuantos billetes tiene de cada uno y el total en €.
+El cajero tiene un apartado llamado caja en donde guarda ese dinero.
+
+Un usuario tiene una cuenta en dicho cajero que inicialmente estará en 0, podrá hacer ingresos y retiradas de su dinero, un ingreso tiene el aspecto siguiente [{ valor: 100, cantidad: x }, {...}] una retirada es una cantidad entera no superior a su haber: 
+ejemplo retirar 240€, habiendo 250€.
+si desea retirar más de lo que tiene en su haber, se le devolverá un mensaje de error 'Operación no autorizada por falta de saldo'
+
+Para retirar dinero debemos implementar un algoritmo que de el menor número de billetes posibles, es decir en este caso sería lago como [{ valor: 100, cantidad: 2 }, { valor: 50, cantidad:0 }, { valor: 20, cantidad: 2 }, ...] los que su cantidad sea 0 no se incluirán en el array
+
+Al finalizar la transacción, y si esta es realizable, mostrará esa transacción y el total retirado o ingresado
+
+cada { valor: x, cantidad: y } corresponde a una clase Billete, y un conjunto de Billetes en una operación única será 
+una clase Transacción, que contiene no solo las operaciones en un array de billetes sino el usuario que las realiza y el total.
+El cajero debe anotar cuanto dinero tiene en total cada cliente, para que no puedan retirar más de la cuenta.
+al finalizar el día el cajero mostrará el dinero inicial del día, todas las Transacciones y el Total caja y de cada usuario. dinero inicial +- transacciones nos debe dar el dinero que hay en caja.
+
+Usar SOLID y Patrones de diseño en la medidad de lo posible
+
+# tenemos el código en la carpeta 999
+este código está hecho mal a propósito usando mal las clases, no usando POO, SOLID ni patrones se trata de identificar 
+las posibles mejoras, para que el código sea más mantenible, escalable y de calidad.
+Utilizar TDD.
+
+(solo si quieres) Usar una representación gráfica para este ejercicio simulando un cajero en pantalla, una caja de texto que recoja la cantidad de dinero a retirar y/o ingresar, simular el menú inicial:
+  1. ver saldo
+  2. retirar
+  3. ingresar
+
+pasar la solución a la carpeta 300, va por series:
+  de la 000 a 099, código base algoritmia simple
+  de 100 a 199, algoritmia compleja
+  de 200 a 299, POO
+  de 300 a 399, SOLID, PATRONES DE DISEÑO
+...
+
+
+
