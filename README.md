@@ -495,9 +495,10 @@ Espero que este tutorial les haya sido útil. Si tienen alguna pregunta o sugere
 
 # EXERCICE 007 ARRAY HELPERS TESTING ##############
 
-¡Bienvenidos a este tutorial de algoritimia, estás en Dev HackerCrash y yo soy Juan Luna! En este video, vamos a discutir cómo utilizar el código proporcionado para limpiar un array de primitivos y un array de objetos de un solo parámetro.
+¡Bienvenidos a este tutorial de algoritimia, estás en Dev HackerCrash y yo soy Juan Luna! En este video, vamos a ver varias cosas, un codigo qye ya implementamos en un vídeo anterior para limpieza de arrays, como hacer tests para es código desués refactorizaremos el código y por último volveremos a ejecutar los tests.
 
-En primer lugar, hablemos de la función 'cleanArray'. Como pueden ver, esta función toma un array como parámetro y devuelve un array limpio sin elementos duplicados.
+// ARRAYHELPER 
+En primer lugar, repasemos la función 'cleanArray'. Como pueden ver, esta función toma un array como parámetro y devuelve un array limpio sin elementos duplicados.
 
 Para lograr esto, utilizamos el método 'filter' de JavaScript para iterar sobre el array original y comparar cada elemento con el índice de ese elemento en el array original. Si el índice es igual, significa que ese elemento es único y lo agregamos al array de elementos únicos.
 
@@ -509,6 +510,7 @@ Para limpiar este tipo de array, utilizamos una estructura de control for para i
 En resumen, este código proporciona dos funciones útiles para limpiar arrays de primitivos y arrays de objetos de un solo parámetro.
 
 
+// TESTING -1
 Ahora vamos a ver cómo utilizar el código de prueba para comprobar que las funciones 'cleanArray' y 'cleanArrayOfObjectsOnlyOneParam' funcionan correctamente.
 
 [enseñar y explicar los ejemplos]
@@ -516,6 +518,31 @@ Como pueden ver, el código de prueba utiliza la librería 'chai' para realizar 
 
 En cada prueba, se crea un array con elementos repetidos y se utiliza la función correspondiente para limpiarlo. Luego, se utiliza el método 'assert.deepEqual' de chai para comparar el array limpio con el resultado esperado. Si el resultado es igual, la prueba se considera exitosa.
 
+
+// REFACTORING 
+Ahora vamos a refactorizar el código anterior para que haga lo mismo pero mucho más simple, y en tal caso si no rompe los tests, quedaría listo para su deploiment a la rama correspondiente.
+
+
+// TESTING -2 
+
+el código se puede simplificar utilizando el método filter de JavaScript. Aquí te muestro una posible refactorización:
+
+```
+public static cleanArrayOfObjectsOnlyOneParam(originalArray: any[]): any[] {
+    return originalArray.filter((obj, index) => {
+        const objParam = Object.keys(obj)[0];
+        return originalArray.findIndex(o => objParam === Object.keys(o)[0]) === index;
+    });
+}
+```
+
+La función filter itera sobre cada elemento del array original, y si el objeto actual es el primer objeto con ese primer parametro, lo agrega al array de objetos únicos.
+
+En resumen, esta refactorización utiliza el método filter para iterar sobre el array original y comparar el primer parametro de cada objeto con el primer parametro de otros objetos en el array. Si es el primer objeto con ese parametro, es agregado al array de objetos únicos. Esto simplifica el código y lo hace más fácil de leer y entender.
+
+
+
+// CONCLUSIONES 
 En general, el código de prueba proporcionado es una excelente manera de asegurar que nuestras funciones 'cleanArray' y 'cleanArrayOfObjectsOnlyOneParam' están funcionando correctamente, además
 
 El desarrollo guiado por pruebas (TDD) es un enfoque de desarrollo de software que se enfoca en escribir pruebas antes de escribir el código.
@@ -534,6 +561,64 @@ Así que en la medida de lo posible haremos TDD en nuestros códigos.
 
 
 Espero que te hay sido útil este contenido y si es así no olvides car a la campanita, un like un comentario, comparte mis vídeos etc. ya tu sabe mi amol, chao, gracias por ver!
+
+
+## EXERCICE-008 MAP(), FILTER(), REDUCE()
+
+A continuación te proporciono ejemplos de código en TypeScript para las funciones map(), filter() y reduce(), y un ejemplo final en el que se usen las tres funciones juntas.
+
+La función map() se utiliza para transformar cada elemento de un arreglo en un nuevo elemento dentro de un nuevo arreglo, no modifica el que teníamos.
+
+Por ejemplo, si queremos duplicar cada elemento de un arreglo de números, podemos utilizar la función map() de la siguiente manera:
+
+typescript
+```
+let numbers = [1, 2, 3, 4, 5];
+let doubledNumbers = numbers.map(number => number * 2);
+console.log(doubledNumbers); // [2, 4, 6, 8, 10]
+```
+
+La función filter() se utiliza para filtrar elementos de un arreglo según una condición dada. Por ejemplo, si queremos obtener solo los números pares de un arreglo de números, podemos utilizar la función filter() de la siguiente manera:
+
+typescript
+```
+let numbers = [1, 2, 3, 4, 5];
+let evenNumbers = numbers.filter(number => number % 2 === 0);
+console.log(evenNumbers); // [2, 4]
+```
+
+La función reduce() se utiliza para reducir un arreglo a un solo valor. Por ejemplo, si queremos sumar todos los elementos de un arreglo de números, podemos utilizar la función reduce() de la siguiente manera:
+
+typescript
+```
+let numbers = [1, 2, 3, 4, 5];
+let sum = numbers.reduce((total, number) => total + number, 0);
+console.log(sum); // 15
+```
+
+Ahora, si queremos combinar las tres funciones, podemos hacerlo de la siguiente manera:
+hay que tener cuidado con lo que queremos, porque no sería lo mismo , filtrar los pares de una serie, después hayar el doble de cada uno de ese filtrado y por ultimo sumarlos, que alterar el orden ,veámoslo
+
+typescript
+```
+let numbers = [1, 2, 3, 4, 5];
+let sumOfEvenDoubledNumbers = numbers
+  .filter(number => number % 2 === 0)
+  .map(number => number * 2)
+  .reduce((total, number) => total + number, 0);
+console.log(sumOfEvenDoubledNumbers); // 12
+```
+
+En este 1er ejemplo, primero filtramos los números pares, luego los duplicamos y finalmente sumamos los nuevos números resultantes.
+
+Si alteraramos las funciones de orden, primero duplicar [2,4,6,8,10], después filtrar por los pares, [2,4,6,8,10], todos son pares, y después los sumamos todos, el resultado sería muy distinto. 
+// 30
+
+
+Espero que estos ejemplos te ayuden a entender cómo funcionan las funciones map(), filter() y reduce() en TypeScript. Si necesitas más ayuda, no dudes en preguntar.
+
+Espero que te hay sido útil este contenido y si es así no olvides dar a la campanita, un like un comentario, comparte mis vídeos etc. ya tu sabe mi amol, chao, tilín!
+
 
 
 
